@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Muhammad Siddiq — GenAI & Backend Engineer</title>
+<meta name="description" content="Muhammad Siddiq — GenAI & Backend Engineer. Building production-grade AI applications, RAG systems, agentic workflows, and scalable backends." />
+<meta name="theme-color" content="#0a0b0d" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles/main.css" />
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.161.0/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__bar"><span></span></div>
+  <div class="loader__label mono">INITIALIZING&nbsp;NEURAL&nbsp;CORE</div>
+</div>
+
+<!-- ============ GRAIN + SCANLINE OVERLAYS ============ -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"></div>
+  <div class="cursor__label mono" id="cursorLabel"></div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__brand" data-cursor="home">
+    <span class="nav__mono mono">MS</span>
+    <span class="nav__name">Muhammad Siddiq</span>
+  </a>
+  <nav class="nav__links mono">
+    <a href="#about" data-cursor="about">About</a>
+    <a href="#skills" data-cursor="skills">Skills</a>
+    <a href="#experience" data-cursor="work">Work</a>
+    <a href="#projects" data-cursor="projects">Projects</a>
+    <a href="#contact" data-cursor="contact">Contact</a>
+  </nav>
+  <a href="#contact" class="nav__cta magnetic" data-cursor="say hello">
+    <span>Let&rsquo;s talk</span>
+  </a>
+  <button class="nav__burger" id="navBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mono">About</a>
+  <a href="#skills" class="mono">Skills</a>
+  <a href="#experience" class="mono">Work</a>
+  <a href="#projects" class="mono">Projects</a>
+  <a href="#certifications" class="mono">Certifications</a>
+  <a href="#contact" class="mono">Contact</a>
+</div>
+
+<main id="viewport">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+
+    <div class="hero__grid" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <div class="hero__topline mono">
+        <span class="hero__status"><i></i>Available for work</span>
+        <span class="hero__loc">Faisalabad, PK — 31.45°N</span>
+      </div>
+
+      <p class="hero__kicker mono reveal-line">GenAI &amp; Backend Engineer // Portfolio 2026</p>
+
+      <h1 class="hero__title" aria-label="Muhammad Siddiq">
+        <span class="hero__word">
+          <span class="char" style="--i:0">M</span><span class="char" style="--i:1">U</span><span class="char" style="--i:2">H</span><span class="char" style="--i:3">A</span><span class="char" style="--i:4">M</span><span class="char" style="--i:5">M</span><span class="char" style="--i:6">A</span><span class="char" style="--i:7">D</span>
+        </span>
+        <span class="hero__word hero__word--accent">
+          <span class="char" style="--i:0">S</span><span class="char" style="--i:1">I</span><span class="char" style="--i:2">D</span><span class="char" style="--i:3">D</span><span class="char" style="--i:4">I</span><span class="char" style="--i:5">Q</span>
+        </span>
+      </h1>
+
+      <p class="hero__sub reveal-line">
+        I build production-grade AI applications &mdash; RAG systems, agentic workflows,
+        voice agents &amp; scalable backends that turn business requirements into reliable,
+        maintainable, AI-powered products.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary magnetic" data-cursor="view work">
+          <span>View Work</span>
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn--ghost magnetic" data-cursor="get in touch">
+          <span>Get in touch</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__scroll mono">
+      <span>Scroll</span>
+      <span class="hero__scroll-line"><i></i></span>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marquee1">
+      <span class="marquee__item">LangChain</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">LangGraph</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">RAG Pipelines</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Agentic AI</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">FastAPI</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Vector Databases</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Next.js</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Voice-to-Voice AI</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">LangChain</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">LangGraph</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">RAG Pipelines</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Agentic AI</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">FastAPI</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Vector Databases</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Next.js</span><span class="marquee__dot">/</span>
+      <span class="marquee__item">Voice-to-Voice AI</span><span class="marquee__dot">/</span>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about section" id="about">
+    <div class="section__head">
+      <span class="section__num mono">01 / About</span>
+      <span class="section__rule"></span>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__copy">
+        <h2 class="about__title reveal-text">
+          Engineering intelligence<br />
+          into <em>reliable</em> products.
+        </h2>
+        <div class="about__body">
+          <p class="reveal-line">
+            GenAI &amp; Backend Engineer with experience building production-grade AI
+            applications, RAG systems, agentic AI workflows, and scalable backend services.
+          </p>
+          <p class="reveal-line">
+            I work with Python, LangChain, LangGraph, FastAPI, Flask, OpenAI APIs and vector
+            databases to deliver context-aware, automation-driven experiences &mdash; from AI
+            chatbots and WhatsApp agents to SaaS platforms and enterprise web apps.
+          </p>
+          <p class="reveal-line">
+            My focus is transforming business requirements into reliable, maintainable, and
+            impactful AI-powered products, bridging modern AI capabilities with real-world
+            software engineering.
+          </p>
+        </div>
+
+        <div class="about__stats">
+          <div class="stat" data-parallax="0.04">
+            <span class="stat__num" data-count="7">0</span>
+            <span class="stat__label mono">Projects shipped</span>
+          </div>
+          <div class="stat" data-parallax="0.08">
+            <span class="stat__num" data-count="20">0</span><span class="stat__plus">+</span>
+            <span class="stat__label mono">Technologies</span>
+          </div>
+          <div class="stat" data-parallax="0.05">
+            <span class="stat__num" data-count="2">0</span>
+            <span class="stat__label mono">Certifications</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about__visual">
+        <canvas id="coreCanvas" class="about__core"></canvas>
+        <div class="about__ring mono" aria-hidden="true">CORE.SYS // ACTIVE</div>
+        <div class="about__crosshair" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="skills section" id="skills">
+    <div class="section__head">
+      <span class="section__num mono">02 / Skills</span>
+      <span class="section__rule"></span>
+    </div>
+
+    <div class="skills__grid">
+      <div class="skills__intro">
+        <h2 class="skills__title reveal-text">The stack behind the systems.</h2>
+        <p class="skills__lead reveal-line">A toolset tuned for AI products &mdash; from orchestration and retrieval to APIs, data, and deployment. Hover to feel them pull.</p>
+      </div>
+
+      <div class="skills__groups">
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Languages</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic" data-cursor="Python">Python <em>proficient</em></span>
+            <span class="chip magnetic" data-cursor="TypeScript">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Artificial Intelligence</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">Machine Learning</span>
+            <span class="chip magnetic">Deep Learning</span>
+            <span class="chip magnetic">NLP</span>
+            <span class="chip magnetic">LLM</span>
+            <span class="chip magnetic">Agentic AI</span>
+            <span class="chip magnetic">RAG Pipelines</span>
+            <span class="chip magnetic">Generative AI</span>
+            <span class="chip magnetic">AI Automation</span>
+            <span class="chip magnetic">Voice-to-Voice AI Agents</span>
+            <span class="chip magnetic">MCP</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Frameworks &amp; Libs</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">LangChain</span>
+            <span class="chip magnetic">LangGraph</span>
+            <span class="chip magnetic">LangSmith</span>
+            <span class="chip magnetic">FastAPI</span>
+            <span class="chip magnetic">Flask</span>
+            <span class="chip magnetic">React</span>
+            <span class="chip magnetic">Next.js</span>
+            <span class="chip magnetic">Node.js</span>
+            <span class="chip magnetic">NumPy</span>
+            <span class="chip magnetic">Pandas</span>
+            <span class="chip magnetic">Scikit-learn</span>
+            <span class="chip magnetic">TensorFlow/Keras</span>
+            <span class="chip magnetic">Pydantic</span>
+            <span class="chip magnetic">SQLAlchemy</span>
+            <span class="chip magnetic">Prisma</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Databases &amp; Vector</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">MySQL</span>
+            <span class="chip magnetic">PostgreSQL</span>
+            <span class="chip magnetic">Redis</span>
+            <span class="chip magnetic">Supabase</span>
+            <span class="chip magnetic">Pinecone</span>
+            <span class="chip magnetic">FAISS</span>
+            <span class="chip magnetic">Chroma</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Tools &amp; Platforms</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">Hugging Face</span>
+            <span class="chip magnetic">Postman</span>
+            <span class="chip magnetic">Twilio</span>
+            <span class="chip magnetic">MCP</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Deployment &amp; VC</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">Vercel</span>
+            <span class="chip magnetic">Netlify</span>
+            <span class="chip magnetic">Railway</span>
+            <span class="chip magnetic">Hostinger</span>
+            <span class="chip magnetic">cPanel</span>
+            <span class="chip magnetic">SiteGround</span>
+            <span class="chip magnetic">DigitalOcean</span>
+            <span class="chip magnetic">Git</span>
+            <span class="chip magnetic">GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">AI Engineering Tools</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">Cursor</span>
+            <span class="chip magnetic">GitHub Copilot</span>
+            <span class="chip magnetic">Claude Code</span>
+            <span class="chip magnetic">OpenCode</span>
+            <span class="chip magnetic">Kilo Code</span>
+            <span class="chip magnetic">Hermes Agent</span>
+            <span class="chip magnetic">Qwen CLI</span>
+            <span class="chip magnetic">Gemini CLI</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Software</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">VS Code</span>
+            <span class="chip magnetic">Jupyter Notebook</span>
+            <span class="chip magnetic">Google Colab</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal-up">
+          <h3 class="skill-group__title mono">Soft Skills</h3>
+          <div class="skill-group__chips">
+            <span class="chip magnetic">Adaptability</span>
+            <span class="chip magnetic">Time Management</span>
+            <span class="chip magnetic">Quick Learning</span>
+            <span class="chip magnetic">Effective Multitasking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="experience section" id="experience">
+    <div class="section__head">
+      <span class="section__num mono">03 / Experience</span>
+      <span class="section__rule"></span>
+    </div>
+
+    <div class="experience__grid">
+      <div class="experience__intro">
+        <h2 class="experience__title reveal-text">Currently shipping<br />at ElevateXCrew.</h2>
+        <p class="reveal-line">Designing and deploying agentic AI pipelines, RAG systems, AI chatbots and n8n automation workflows that reduce manual operations and enable intelligent business automation.</p>
+      </div>
+
+      <div class="experience__list">
+        <article class="exp reveal-up" data-parallax="0.03">
+          <div class="exp__meta">
+            <span class="exp__date mono">Feb 2026 — Present</span>
+            <span class="exp__type mono">Current role</span>
+          </div>
+          <div class="exp__body">
+            <h3 class="exp__role">GenAI &amp; Backend Engineer</h3>
+            <p class="exp__org mono">ElevateXCrew &middot; Faisalabad, Pakistan</p>
+            <ul class="exp__list-items">
+              <li>Designed and deployed Agentic AI pipelines, RAG systems, AI chatbots, and n8n automation workflows for client projects, reducing manual operations and enabling intelligent business automation.</li>
+              <li>Built Voice-to-Voice AI Agents with STT/TTS integration, an AI-powered Appointment Booking Chatbot, and a Client Project Monitoring System as part of internal product development.</li>
+              <li>Designed and implemented LLM/GPT-based RAG systems and chatbots to enhance language understanding, automate workflows, and support customer knowledge retrieval.</li>
+              <li>Developed AI-driven automation solutions, including social media auto-posting and n8n workflows, reducing manual effort and improving operational efficiency.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="projects section" id="projects">
+    <div class="section__head">
+      <span class="section__num mono">04 / Projects</span>
+      <span class="section__rule"></span>
+    </div>
+
+    <div class="projects__intro">
+      <h2 class="projects__title reveal-text">Selected work.</h2>
+      <p class="projects__lead reveal-line">AI products, RAG systems, agentic platforms and full-stack apps &mdash; designed, built and shipped end-to-end. <span class="mono hint">tilt the cards ↳</span></p>
+    </div>
+
+    <div class="projects__grid">
+
+      <article class="project tilt" data-cursor="view">
+        <div class="project__inner">
+          <div class="project__top">
+            <span class="project__idx mono">01</span>
+            <span class="project__cat mono">RAG · Agentic</span>
+          </div>
+          <h3 class="project__title">AI Chatbot with RAG using LangGraph</h3>
+          <p class="project__desc">Intelligent AI chatbot with LangGraph orchestration, FastAPI backend and React frontend — real-time streaming responses and multi-thread conversation management.</p>
+          <ul class="project__bullets">
+            <li>RAG pipeline with FAISS, automated PDF processing, semantic search &amp; context-aware retrieval.</li>
+            <li>Multi-tool capabilities: web search, weather, calculator, stock market — with persistent chat history &amp; memory.</li>
+          </ul>
+          <div class="project__tags mono">
+            <span>LangGraph</span><span>LangChain</span><span>FastAPI</span><span>React</span><span>FAISS</span><span>SQLite</span><span>OpenAI API</span><span>RAG</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project tilt" data-cursor="view">
+        <div class="project__inner">
+          <div class="project__top">
+            <span class="project__idx mono">02</span>
+            <span class="project__cat mono">AI · Automation</span>
+          </div>
+          <h3 class="project__title">WhatsApp Booking Agent</h3>
+          <p class="project__desc">AI-powered WhatsApp assistant that automates appointment scheduling through natural-language conversations.</p>
+          <ul class="project__bullets">
+            <li>Full-stack platform: real-time booking management, analytics dashboard, automated reminders, Redis background processing.</li>
+            <li>OCR-based payment verification, structured booking workflows &amp; AI-driven conversation handling.</li>
+          </ul>
+          <div class="project__tags mono">
+            <span>OpenAI API</span><span>Twilio</span><span>Flask</span><span>React</span><span>MySQL</span><span>Redis</span><span>OCR</span><span>WhatsApp Business API</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project tilt" data-cursor="view">
+        <div class="project__inner">
+          <div class="project__top">
+            <span class="project__idx mono">03</span>
+            <span class="project__cat mono">Extension · RAG</span>
+          </div>
+          <h3 class="project__title">YouTube RAG Chat — Chrome Extension</h3>
+          <p class="project__desc">Chat with any YouTube video via transcript extraction, semantic search and AI-powered Q&amp;A — right inside the browser.</p>
+          <ul class="project__bullets">
+            <li>FastAPI backend for transcript processing, embedding generation &amp; FAISS context-aware retrieval.</li>
+            <li>Conversation persistence, automatic video detection &amp; real-time retrieval workflows.</li>
+          </ul>
+          <div class="project__tags mono">
+            <span>FastAPI</span><span>Chrome Extension</span><span>FAISS</span><span>OpenAI API</span><span>YouTube Transcript API</span><span>RAG</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project tilt" data-cursor="view">
+        <div class="project__inner">
+          <div class="project__top">
+            <span class="project__idx mono">04</span>
+            <span class="project__cat mono">Agentic · LMS</span>
+          </div>
+          <h3 class="project__title">LMS Agentic</h3>
+          <p class="project__desc">Full-stack Learning Management System with role-based access for administrators, teachers and students — powered by an AI educational assistant.</p>
+          <ul class="project__bullets">
+            <li>AI assistant via LangGraph &amp; OpenAI API with role-specific tools and workflow automation.</li>
+            <li>Agent orchestration, persistent chat history &amp; comprehensive course management through a unified dashboard.</li>
+          </ul>
+          <div class="project__tags mono">
+            <span>LangGraph</span><span>OpenAI API</span><span>React</span><span>TypeScript</span><span>Flask</span><span>SQLAlchemy</span><span>PostgreSQL/MySQL</span><span>Agentic AI</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project tilt" data-cursor="view">
+        <div class="project__inner">
+          <div class="project__top">
+            <span class="project__idx mono">05</span>
+            <span class="project__cat mono">Full-stack · CMS</span>
+          </div>
+          <h3 class="project__title">ElevateXCrew — Corporate Website &amp; CMS</h3>
+          <p class="project__desc">End-to-end development lifecycle: business requirements into a production-ready corporate website and content management platform for a software company.</p>
+          <ul class="project__bullets">
+            <li>Next.js SSR frontend, Express.js backend, MySQL &amp; a dedicated React admin portal for blogs, portfolios, careers &amp; media.</li>
+            <li>SEO-optimized &amp; scalable: JWT auth, markdown CMS, image management, dynamic rendering, cache revalidation &amp; production deployment.</li>
+          </ul>
+          <div class="project__tags mono">
+            <span>Next.js 14</span><span>React</span><span>TypeScript</span><span>Tailwind</span><span>Node.js</span><span>Express.js</span><span>Prisma</span><span>MySQL</span><span>JWT</span><span>SSR</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project tilt" data-cursor="view">
+        <div class="project__inner">
+          <div class="project__top">
+            <span class="project__idx mono">06</span>
+            <span class="project__cat mono">SaaS · Voice AI</span>
+          </div>
+          <h3 class="project__title">RaketH Clone — AI Voice Cloning &amp; TTS SaaS</h3>
+          <p class="project__desc">End-to-end AI SaaS platform for voice cloning, multilingual speech synthesis and translation-powered voice generation — with scalable subscription billing.</p>
+          <ul class="project__bullets">
+            <li>Secure auth, credit-based billing, generation history, voice library management &amp; responsive user dashboards.</li>
+            <li>Admin tools: real-time analytics, user &amp; subscription management, credit allocation &amp; engagement workflows.</li>
+          </ul>
+          <div class="project__tags mono">
+            <span>Next.js 16</span><span>TypeScript</span><span>Prisma</span><span>NextAuth.js</span><span>MySQL</span><span>Zustand</span><span>TanStack Query</span><span>Framer Motion</span><span>Voice Cloning</span><span>TTS</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project tilt project--wide" data-cursor="view">
+        <div class="project__inner">
+          <div class="project__top">
+            <span class="project__idx mono">07</span>
+            <span class="project__cat mono">RAG · Education</span>
+          </div>
+          <h3 class="project__title">GraceWise — AI-Powered Spiritual Learning Platform</h3>
+          <p class="project__desc">A production-ready RAG platform delivering personalized spiritual guidance through LLM-powered reasoning over curated knowledge bases.</p>
+          <ul class="project__bullets">
+            <li>Curriculum Management system for creating, organizing &amp; delivering structured educational content across multiple age groups and learning stages.</li>
+            <li>End-to-end document pipelines: PDF extraction, embedding generation, vector storage &amp; retrieval-augmented response generation.</li>
+          </ul>
+          <div class="project__tags mono">
+            <span>Flask</span><span>LangChain</span><span>OpenAI API</span><span>Groq</span><span>ChromaDB</span><span>Sentence Transformers</span><span>MySQL</span><span>SQLAlchemy</span><span>RAG</span><span>Semantic Search</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATIONS ============ -->
+  <section class="certs section" id="certifications">
+    <div class="section__head">
+      <span class="section__num mono">05 / Certifications</span>
+      <span class="section__rule"></span>
+    </div>
+
+    <div class="certs__intro">
+      <h2 class="certs__title reveal-text">Verified &amp; certified.</h2>
+      <p class="reveal-line">Recognized for backend engineering and generative AI expertise.</p>
+    </div>
+
+    <div class="certs__grid">
+      <article class="cert tilt" data-cursor="verified">
+        <div class="cert__inner">
+          <div class="cert__seal">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1"/><path d="M16 24l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+            <span class="cert__date mono">Aug 2025</span>
+            <h3 class="cert__name">Backend Engineer</h3>
+            <p class="cert__org mono">Akhuwat First Faisalabad</p>
+          </div>
+      </article>
+
+      <article class="cert tilt" data-cursor="verified">
+        <div class="cert__inner">
+          <div class="cert__seal">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1"/><path d="M16 24l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+            <span class="cert__date mono">Oct 2025</span>
+            <h3 class="cert__name">GenAI Engineer</h3>
+            <p class="cert__org mono">Tecrix</p>
+          </div>
+      </article>
+
+      <article class="cert cert--edu tilt" data-cursor="education">
+        <div class="cert__inner">
+          <div class="cert__seal">
+            <svg viewBox="0 0 48 48"><path d="M24 10L4 20l20 10 20-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 24v8c0 0 5 4 12 4s12-4 12-4v-8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <span class="cert__date mono">Education</span>
+            <h3 class="cert__name">Intermediate</h3>
+            <p class="cert__org mono">Akhuwat College Kasur</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact section" id="contact">
+    <div class="contact__bg" aria-hidden="true"><div class="contact__glow" id="contactGlow"></div></div>
+
+    <div class="section__head">
+      <span class="section__num mono">06 / Contact</span>
+      <span class="section__rule"></span>
+    </div>
+
+    <div class="contact__inner">
+      <p class="contact__kicker mono reveal-line">Let&rsquo;s build something intelligent</p>
+      <h2 class="contact__title">
+        <span class="reveal-line">Have an AI product</span>
+        <span class="reveal-line">or backend to ship?</span>
+        <span class="reveal-line contact__title-accent">Let&rsquo;s talk.</span>
+      </h2>
+
+      <a href="mailto:muhammadsiddiq.code@gmail.com" class="contact__email magnetic" data-cursor="send email">
+        <span class="contact__email-text">muhammadsiddiq.code@gmail.com</span>
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <div class="contact__links">
+        <a class="contact__link magnetic" href="tel:+923165950292" data-cursor="call">
+          <span class="contact__link-label mono">Phone</span>
+          <span class="contact__link-value">+92 316 5950292</span>
+        </a>
+        <a class="contact__link magnetic" href="https://github.com/genaiwithms" target="_blank" rel="noopener" data-cursor="github">
+          <span class="contact__link-label mono">GitHub</span>
+          <span class="contact__link-value">/genaiwithms</span>
+        </a>
+        <a class="contact__link magnetic" href="https://linkedin.com/in/genaiwithms" target="_blank" rel="noopener" data-cursor="linkedin">
+          <span class="contact__link-label mono">LinkedIn</span>
+          <span class="contact__link-value">/in/genaiwithms</span>
+        </a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span class="mono">&copy; <span id="year">2026</span> Muhammad Siddiq</span>
+      <span class="mono">Designed &amp; built with Three.js + Lenis</span>
+      <a href="#hero" class="footer__top mono magnetic" data-cursor="back to top">↑ Top</a>
+    </footer>
+  </section>
+
+</main>
+
+<!-- Lenis smooth scroll -->
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+<!-- main app -->
+<script src="js/main.js" defer></script>
+
+<!-- three.js scenes (modules) -->
+<script type="module" src="js/three-hero.js"></script>
+<script type="module" src="js/three-core.js"></script>
+
+</body>
+</html>
