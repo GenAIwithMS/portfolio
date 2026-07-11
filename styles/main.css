@@ -1109,7 +1109,6 @@ body::before {
     border: 1px solid var(--line);
     border-radius: 20px;
     background: linear-gradient(180deg, var(--bg-elev), var(--bg-soft));
-    overflow: hidden;
     transform-style: preserve-3d;
     transition:
         border-color 0.4s,
@@ -1206,6 +1205,28 @@ body::before {
     border: 1px solid var(--line);
     border-radius: 6px;
     color: var(--ink-dim);
+}
+.project__links {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    transform: translateZ(10px);
+}
+.project__link {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    transition:
+        background 0.3s,
+        color 0.3s;
+}
+.project__link:hover {
+    background: var(--accent);
+    color: #0a0b0d;
 }
 @media (max-width: 760px) {
     .projects__grid {

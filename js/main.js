@@ -190,6 +190,26 @@
     });
   }
 
+  /* ---------- PROJECT CARD → open related project ---------- */
+  $$('.project[data-href]').forEach((card) => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return; // inner GitHub/Live link handles itself
+      const url = card.getAttribute("data-href");
+      if (url) window.open(url, "_blank", "noopener");
+    });
+    card.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      if (e.target.closest("a")) return;
+      const url = card.getAttribute("data-href");
+      if (url) {
+        e.preventDefault();
+        window.open(url, "_blank", "noopener");
+      }
+    });
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "link");
+  });
+
   /* ---------- REVEAL ON SCROLL ---------- */
   const revealEls = $$(".reveal-line, .reveal-up, .reveal-text");
   if ("IntersectionObserver" in window) {
