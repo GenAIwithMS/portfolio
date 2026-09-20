@@ -6,8 +6,6 @@ GenAI & Backend Engineer
 
 </div>
 
-Phone: +92 3165950292
-
 Email: muhammadsiddiq.code@gmail.com
 
 Github: github.com/genaiwithms

@@ -1,294 +1,315 @@
 /* =====================================================================
-   MAIN — Lenis smooth scroll, cursor, magnetic, reveals, tilt
+   MAIN — project cards, case study sheet, hero preview, small niceties
+   Project content lives in js/projects.js (window.PROJECTS)
    ===================================================================== */
 (function () {
   "use strict";
 
+  const PROJECTS = window.PROJECTS || [];
+  const MAIL = "muhammadsiddiq.code@gmail.com";
+  const HOME_TITLE = document.title;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const $ = (s, c) => (c || document).querySelector(s);
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+  const pad = (n) => String(n).padStart(2, "0");
+  const esc = (s) =>
+    String(s).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+  // content strings may use **bold** and `code`
+  const rich = (s) =>
+    esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`(.+?)`/g, "<code>$1</code>");
 
-  /* ---------- LENIS (heavy smooth scroll) ---------- */
-  let lenis = null;
-  if (window.Lenis && !reduce) {
-    lenis = new Lenis({
-      duration: 1.45,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.4,
-      infinite: false,
-    });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-    window.__lenis = lenis;
-  }
+  // soft card colours, cycled through the project list
+  const TINTS = ["mint", "peach", "lavender", "sky", "butter", "rose"];
+  const tint = (i) => `var(--t-${TINTS[i % TINTS.length]})`;
 
-  // anchor links → lenis scrollTo
-  $$('a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const id = a.getAttribute("href");
-      if (id.length < 2) return;
-      const target = $(id);
-      if (!target) return;
-      e.preventDefault();
-      if (lenis) lenis.scrollTo(target, { offset: -20, duration: 1.6 });
-      else target.scrollIntoView({ behavior: "smooth" });
-      $("#mobileMenu")?.classList.remove("is-open");
-    });
-  });
+  const ARROW =
+    '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
-  /* ---------- LOADER ---------- */
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      const loader = $("#loader");
-      if (loader) loader.classList.add("is-done");
-      const hero = $("#hero");
-      if (hero) hero.classList.add("is-in");
-    }, 1200);
-  });
-
-  /* ---------- SCROLL PROGRESS + NAV STATE ---------- */
-  const progress = $("#scrollProgress");
+  /* ---------- nav ---------- */
   const nav = $("#nav");
-  function onScroll() {
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    const y = window.scrollY;
-    if (progress) progress.style.width = (y / h) * 100 + "%";
-    if (nav) nav.classList.toggle("is-scrolled", y > 40);
-  }
+  const onScroll = () => nav.classList.toggle("is-stuck", window.scrollY > 8);
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---------- MOBILE MENU ---------- */
-  const burger = $("#navBurger");
-  const menu = $("#mobileMenu");
-  if (burger && menu) {
-    burger.addEventListener("click", () => menu.classList.toggle("is-open"));
-  }
-
-  /* ---------- CUSTOM CURSOR ---------- */
-  if (fine) {
-    const cursor = $("#cursor");
-    const dot = $(".cursor__dot");
-    const ring = $(".cursor__ring");
-    const label = $("#cursorLabel");
-    let mx = window.innerWidth / 2,
-      my = window.innerHeight / 2;
-    let rx = mx,
-      ry = my;
-    let dx = mx,
-      dy = my;
-
-    window.addEventListener("mousemove", (e) => {
-      mx = e.clientX;
-      my = e.clientY;
-    });
-    window.addEventListener("mousedown", () => cursor.classList.add("is-down"));
-    window.addEventListener("mouseup", () => cursor.classList.remove("is-down"));
-
-    function tick() {
-      // dot follows fast
-      dx += (mx - dx) * 0.35;
-      dy += (my - dy) * 0.35;
-      // ring follows with lag
-      rx += (mx - rx) * 0.16;
-      ry += (my - ry) * 0.16;
-      if (dot) dot.style.transform = `translate3d(${dx}px,${dy}px,0)`;
-      if (ring) ring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
-      if (label) label.style.transform = `translate3d(${rx}px,${ry}px,0)`;
-      requestAnimationFrame(tick);
-    }
-    tick();
-
-    // hover states on interactive elements
-    const interactive =
-      'a, button, .magnetic, .chip, .project, .cert, [data-cursor]';
-    document.addEventListener("mouseover", (e) => {
-      const t = e.target.closest(interactive);
-      if (t) {
-        cursor.classList.add("is-hover");
-        const text = t.getAttribute("data-cursor");
-        if (text) {
-          label.textContent = text;
-          cursor.classList.add("has-label");
-        }
-      }
-    });
-    document.addEventListener("mouseout", (e) => {
-      const t = e.target.closest(interactive);
-      if (t) {
-        cursor.classList.remove("is-hover");
-        cursor.classList.remove("has-label");
-      }
-    });
-  }
-
-  /* ---------- MAGNETIC ELEMENTS (smoothed follow + spring-back) ---------- */
-  if (fine && !reduce) {
-    const magnetize = (el, strength, scale) => {
-      let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
-      const apply = () => {
-        el.style.transform =
-          `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)` +
-          (scale > 1 ? ` scale(${scale})` : "");
-      };
-      const loop = () => {
-        cx += (tx - cx) * 0.2;
-        cy += (ty - cy) * 0.2;
-        apply();
-        if (Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1) {
-          raf = requestAnimationFrame(loop);
-        } else {
-          cx = tx; cy = ty;
-          apply();
-          raf = null;
-        }
-      };
-      el.addEventListener("mousemove", (e) => {
-        const r = el.getBoundingClientRect();
-        tx = (e.clientX - r.left - r.width / 2) * strength;
-        ty = (e.clientY - r.top - r.height / 2) * strength;
-        if (!raf) raf = requestAnimationFrame(loop);
+  const navLinks = $$(".nav__links a");
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        navLinks.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id));
       });
-      el.addEventListener("mouseleave", () => {
-        tx = 0; ty = 0;
-        if (!raf) raf = requestAnimationFrame(loop);
-      });
-    };
-
-    $$(".magnetic").forEach((el) => magnetize(el, 0.4, 1.06));
-    $$(".chip").forEach((el) => magnetize(el, 0.22, 1));
-  }
-
-  /* ---------- TILT (projects + certs) ---------- */
-  if (fine && !reduce) {
-    $$(".tilt").forEach((card) => {
-      const inner = card.querySelector(".project__inner, .cert__inner");
-      const max = 8;
-      card.addEventListener("mousemove", (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        const rx = (py - 0.5) * -2 * max;
-        const ry = (px - 0.5) * 2 * max;
-        if (inner) {
-          inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
-          inner.style.setProperty("--mx", px * 100 + "%");
-          inner.style.setProperty("--my", py * 100 + "%");
-        }
-      });
-      card.addEventListener("mouseleave", () => {
-        if (inner) {
-          inner.style.transform = "rotateX(0) rotateY(0)";
-        }
-      });
-    });
-  }
-
-  /* ---------- PROJECT CARD → open related project ---------- */
-  $$('.project[data-href]').forEach((card) => {
-    card.addEventListener("click", (e) => {
-      if (e.target.closest("a")) return; // inner GitHub/Live link handles itself
-      const url = card.getAttribute("data-href");
-      if (url) window.open(url, "_blank", "noopener");
-    });
-    card.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter" && e.key !== " ") return;
-      if (e.target.closest("a")) return;
-      const url = card.getAttribute("data-href");
-      if (url) {
-        e.preventDefault();
-        window.open(url, "_blank", "noopener");
-      }
-    });
-    card.setAttribute("tabindex", "0");
-    card.setAttribute("role", "link");
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+  navLinks.forEach((a) => {
+    const sec = $(a.getAttribute("href"));
+    if (sec) spy.observe(sec);
   });
 
-  /* ---------- REVEAL ON SCROLL ---------- */
-  const revealEls = $$(".reveal-line, .reveal-up, .reveal-text");
-  if ("IntersectionObserver" in window) {
+  /* ---------- project cards + filters ---------- */
+  const cards = $("#cards");
+  cards.innerHTML = PROJECTS.map(
+    (p, i) => `
+    <a class="card rv" href="#work/${p.slug}" data-tags="${esc(p.tags.join(","))}" style="--tint:${tint(i)}">
+      <span class="card__top">
+        <span class="card__num">${pad(i + 1)}</span>
+        <span class="card__cat">${p.status ? `<span class="pill">${esc(p.status)}</span> ` : ""}${esc(p.category)}</span>
+      </span>
+      <h3 class="card__title">${esc(p.name)}</h3>
+      <span class="card__role">${esc(p.role)}</span>
+      <dl class="card__facts">
+        <div class="card__fact"><dt>Problem</dt><dd>${esc(p.problemShort)}</dd></div>
+        <div class="card__fact"><dt>Result</dt><dd>${esc(p.resultShort)}</dd></div>
+      </dl>
+      <span class="card__foot">Read case study <span class="circle" aria-hidden="true">${ARROW}</span></span>
+    </a>`
+  ).join("");
+
+  const counts = { All: PROJECTS.length };
+  PROJECTS.forEach((p) => p.tags.forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
+  const filters = $("#filters");
+  filters.innerHTML = Object.keys(counts)
+    .map(
+      (t, i) =>
+        `<button class="filter" type="button" aria-pressed="${i === 0}" data-tag="${esc(t)}">${esc(t)}<small>${counts[t]}</small></button>`
+    )
+    .join("");
+  filters.addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter");
+    if (!btn) return;
+    $$(".filter", filters).forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+    const tag = btn.dataset.tag;
+    $$(".card", cards).forEach((c) => {
+      c.hidden = tag !== "All" && !c.dataset.tags.split(",").includes(tag);
+      c.classList.add("is-in");
+    });
+  });
+
+  /* ---------- hero preview (problem → result) ---------- */
+  (function preview() {
+    if (!PROJECTS.length) return;
+    const card = $("#preview");
+    const body = $("#previewBody");
+    const dots = $("#previewDots");
+    dots.innerHTML = PROJECTS.map(() => "<span></span>").join("");
+    let i = -1;
+    let timer = null;
+
+    function show(n) {
+      i = (n + PROJECTS.length) % PROJECTS.length;
+      const p = PROJECTS[i];
+      body.classList.add("is-out");
+      setTimeout(
+        () => {
+          $("#previewProblem").textContent = p.problemShort;
+          $("#previewResult").textContent = p.resultShort;
+          $("#previewName").textContent = p.name;
+          $("#previewCount").textContent = "Case " + pad(i + 1);
+          card.setAttribute("href", "#work/" + p.slug);
+          card.setAttribute("aria-label", "Case study: " + p.name);
+          $$("span", dots).forEach((d, k) => d.classList.toggle("is-on", k === i));
+          body.classList.remove("is-out");
+        },
+        reduce ? 0 : 300
+      );
+    }
+    const start = () => { if (!reduce && !timer) timer = setInterval(() => show(i + 1), 5000); };
+    const stop = () => { clearInterval(timer); timer = null; };
+
+    show(0);
+    start();
+    card.addEventListener("mouseenter", stop);
+    card.addEventListener("mouseleave", start);
+    card.addEventListener("focus", stop);
+    card.addEventListener("blur", start);
+    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+  })();
+
+  /* ---------- case study sheet ---------- */
+  const sheet = $("#sheet");
+  const panel = $("#sheetPanel");
+  const content = $("#sheetContent");
+  const progress = $("#sheetProgress");
+  let lastFocus = null;
+
+  const flowHTML = (flow) =>
+    flow
+      .map((n, k) => {
+        const key = n.startsWith("*");
+        const label = key ? n.slice(1) : n;
+        return (
+          '<span class="flow__pair">' +
+          (k ? `<span class="flow__arrow" aria-hidden="true">${ARROW}</span>` : "") +
+          `<span class="flow__node${key ? " is-key" : ""}">${esc(label)}</span></span>`
+        );
+      })
+      .join("");
+
+  function caseHTML(p, idx) {
+    const next = PROJECTS[(idx + 1) % PROJECTS.length];
+    const links = (p.links || [])
+      .map((l) => `<a class="btn btn--dark btn--small" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ${ARROW}</a>`)
+      .join("");
+    const subject = encodeURIComponent("Something like " + p.name);
+    return `
+    <article class="cs">
+      <header class="cs__hero" style="--tint:${tint(idx)}">
+      <span class="cs__cat">${esc(p.category)}${p.status ? ` <span class="pill">${esc(p.status)}</span>` : ""}</span>
+      <h2 class="cs__title" id="csTitle">${esc(p.name)}</h2>
+      <p class="cs__summary">${rich(p.summary)}</p>
+
+      <dl class="cs__facts">
+        <div class="cs__fact"><dt>My role</dt><dd>${esc(p.role)}</dd></div>
+        <div class="cs__fact"><dt>Type</dt><dd>${esc(p.type)}</dd></div>
+        <div class="cs__fact"><dt>Built for</dt><dd>${esc(p.audience)}</dd></div>
+      </dl>
+      ${links ? `<div class="cs__links">${links}</div>` : ""}
+      </header>
+
+      <section class="cs__part">
+        <div class="cs__step"><b>01</b><span>The problem</span></div>
+        <div>
+          <h3 class="cs__h">${esc(p.problem.title)}</h3>
+          ${p.problem.body.map((t) => `<p class="cs__p">${rich(t)}</p>`).join("")}
+        </div>
+      </section>
+
+      <section class="cs__part">
+        <div class="cs__step"><b>02</b><span>The plan</span></div>
+        <div>
+          <h3 class="cs__h">${esc(p.plan.title)}</h3>
+          ${p.plan.body.map((t) => `<p class="cs__p">${rich(t)}</p>`).join("")}
+          <ul class="cs__list">${p.plan.steps.map((t) => `<li>${rich(t)}</li>`).join("")}</ul>
+          <div class="flow">
+            <p class="flow__cap">How it fits together</p>
+            <div class="flow__track">${flowHTML(p.flow)}</div>
+          </div>
+          <div class="stack">${p.stack.map((t) => `<span>${esc(t)}</span>`).join("")}</div>
+        </div>
+      </section>
+
+      <section class="cs__part">
+        <div class="cs__step"><b>03</b><span>The outcome</span></div>
+        <div>
+          <h3 class="cs__h">${esc(p.outcome.title)}</h3>
+          ${p.outcome.body.map((t) => `<p class="cs__p">${rich(t)}</p>`).join("")}
+          <ul class="cs__list cs__list--check">${p.outcome.points.map((t) => `<li>${rich(t)}</li>`).join("")}</ul>
+        </div>
+      </section>
+
+      <aside class="cs__value">
+        <span class="label">What this means for you</span>
+        <p>${esc(p.value)}</p>
+        <a class="btn btn--lime" href="mailto:${MAIL}?subject=${subject}">Let&rsquo;s talk about yours ${ARROW}</a>
+      </aside>
+    </article>
+    <a class="cs__next" href="#work/${next.slug}">
+      <span><small class="label">Next case study</small><strong>${esc(next.name)}</strong></span>
+      <span class="circle" aria-hidden="true">${ARROW}</span>
+    </a>`;
+  }
+
+  function openSheet(slug) {
+    const idx = PROJECTS.findIndex((p) => p.slug === slug);
+    if (idx < 0) return closeSheet(true);
+    const wasOpen = sheet.classList.contains("is-open");
+    if (!wasOpen) lastFocus = document.activeElement;
+    content.innerHTML = caseHTML(PROJECTS[idx], idx);
+    $("#sheetCrumb").textContent = "Case study " + pad(idx + 1) + " / " + pad(PROJECTS.length);
+    panel.scrollTop = 0;
+    progress.style.transform = "scaleX(0)";
+    sheet.classList.add("is-open");
+    sheet.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-locked");
+    document.title = PROJECTS[idx].name + " — Muhammad Siddiq";
+    panel.focus({ preventScroll: true });
+  }
+
+  function closeSheet(silent) {
+    if (!sheet.classList.contains("is-open")) return;
+    sheet.classList.remove("is-open");
+    sheet.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-locked");
+    document.title = HOME_TITLE;
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    if (!silent) return;
+  }
+
+  function route() {
+    const m = location.hash.match(/^#work\/([\w-]+)$/);
+    if (m) openSheet(m[1]);
+    else closeSheet(true);
+  }
+
+  // leaving a case study returns to the work section without a scroll jump
+  function leave() {
+    history.pushState(null, "", "#work");
+    route();
+  }
+
+  sheet.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close]")) leave();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!sheet.classList.contains("is-open")) return;
+    if (e.key === "Escape") leave();
+    if (e.key === "Tab") {
+      // keep focus inside the dialog
+      const f = $$('a[href], button:not([disabled])', panel);
+      if (!f.length) return;
+      const first = f[0];
+      const last = f[f.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === panel)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  panel.addEventListener(
+    "scroll",
+    () => {
+      const max = panel.scrollHeight - panel.clientHeight;
+      progress.style.transform = "scaleX(" + (max > 0 ? panel.scrollTop / max : 0) + ")";
+    },
+    { passive: true }
+  );
+  window.addEventListener("hashchange", route);
+  route();
+
+  /* ---------- reveal on scroll ---------- */
+  const rv = $$(".rv");
+  if (reduce || !("IntersectionObserver" in window)) {
+    rv.forEach((el) => el.classList.add("is-in"));
+  } else {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {
-          if (en.isIntersecting) {
-            en.target.classList.add("is-in");
-            io.unobserve(en.target);
-          }
+          if (!en.isIntersecting) return;
+          en.target.classList.add("is-in");
+          io.unobserve(en.target);
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      { rootMargin: "0px 0px -8% 0px" }
     );
-    revealEls.forEach((el) => io.observe(el));
-  } else {
-    revealEls.forEach((el) => el.classList.add("is-in"));
+    rv.forEach((el) => io.observe(el));
   }
 
-  /* ---------- PARALLAX (data-parallax) ---------- */
-  if (!reduce) {
-    const parallaxEls = $$("[data-parallax]");
-    function onScrollParallax() {
-      const vh = window.innerHeight;
-      parallaxEls.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > vh) return;
-        const speed = parseFloat(el.getAttribute("data-parallax")) || 0;
-        const center = r.top + r.height / 2 - vh / 2;
-        el.style.transform = `translateY(${-center * speed}px)`;
-      });
-    }
-    window.addEventListener("scroll", onScrollParallax, { passive: true });
-    onScrollParallax();
-  }
+  /* ---------- copy email ---------- */
+  const copy = $("#copyMail");
+  copy.addEventListener("click", () => {
+    const done = () => {
+      copy.textContent = "Copied ✓";
+      copy.classList.add("is-done");
+      setTimeout(() => {
+        copy.textContent = "Copy email";
+        copy.classList.remove("is-done");
+      }, 1800);
+    };
+    if (navigator.clipboard) navigator.clipboard.writeText(copy.dataset.mail).then(done, () => {});
+  });
 
-  /* ---------- COUNT-UP STATS ---------- */
-  const counters = $$("[data-count]");
-  if (counters.length) {
-    const cio = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((en) => {
-          if (en.isIntersecting) {
-            countUp(en.target);
-            cio.unobserve(en.target);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-    counters.forEach((c) => cio.observe(c));
-  }
-  function countUp(el) {
-    const target = parseInt(el.getAttribute("data-count"), 10) || 0;
-    const dur = 1400;
-    const start = performance.now();
-    function step(now) {
-      const p = Math.min((now - start) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased);
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  /* ---------- CONTACT GLOW FOLLOWS CURSOR ---------- */
-  if (fine && !reduce) {
-    const glow = $("#contactGlow");
-    const contact = $("#contact");
-    if (glow && contact) {
-      contact.addEventListener("mousemove", (e) => {
-        const r = contact.getBoundingClientRect();
-        glow.style.left = e.clientX - r.left + "px";
-        glow.style.top = e.clientY - r.top + "px";
-      });
-    }
-  }
-
-  /* ---------- YEAR ---------- */
-  const year = $("#year");
-  if (year) year.textContent = new Date().getFullYear();
+  $("#year").textContent = new Date().getFullYear();
 })();
