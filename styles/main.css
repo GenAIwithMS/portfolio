@@ -1673,3 +1673,17 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px s
 }
 /* no divider between the skills band and the contact band */
 #skills, #contact { border-top: 0; border-bottom: 0; }
+
+/* case study: evaluation scorecard */
+.score {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+  gap: 1px;
+  background: var(--line-2);
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.score__item { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px; background: var(--surface-2); }
+.score__value { font-size: clamp(28px, 3vw, 36px); line-height: 1; font-weight: 400; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; color: var(--ink); }
+.score__label { font-size: 14px; line-height: 1.4; color: var(--ink-2); }

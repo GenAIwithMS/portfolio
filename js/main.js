@@ -220,6 +220,10 @@
           .join("")}</ol>
       </section>
 
+      ${p.metrics ? `<section class="cs__part">
+        <p class="cs__label">Evaluation</p>
+        <ul class="score">${p.metrics.map((m) => `<li class="score__item"><span class="score__value">${esc(m.value)}</span><span class="score__label">${esc(m.label)}</span></li>`).join("")}</ul>
+      </section>` : ""}
       <section class="cs__part">
         <p class="cs__label"><b>03</b>The outcome</p>
         <h3 class="cs__h">${esc(p.outcome.title)}</h3>
