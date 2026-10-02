@@ -1671,9 +1671,5 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px s
   .build__label { margin-bottom: 14px; }
   .build__item { padding: 12px 0; }
 }
-
-/* contact band: no light hairlines — not on the card edge, not around the email */
-.contact.tone-dark .contact__band { border: 0; }
-.contact__mail { border-top: 0; border-bottom: 0; }
 /* no divider between the skills band and the contact band */
 #skills, #contact { border-top: 0; border-bottom: 0; }
