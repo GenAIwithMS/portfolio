@@ -8,7 +8,7 @@
 <meta name="author" content="Muhammad Siddiq" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://www.muhammadsiddiq.dev/" />
-<meta name="theme-color" content="#fbfaf6" />
+<meta name="theme-color" content="#F4F4F1" />
 <meta name="color-scheme" content="light" />
 
 <meta property="og:type" content="profile" />
@@ -37,9 +37,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="styles/main.css" />
+<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
@@ -48,89 +49,103 @@
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
-    <a href="#top" class="nav__brand"><img class="nav__avatar" src="avatar.jpg" alt="Muhammad Siddiq" width="40" height="40" />Muhammad Siddiq</a>
+    <a href="#top" class="nav__brand">
+      <img class="nav__avatar" src="avatar.jpg" alt="" width="36" height="36" />
+      <span>Muhammad Siddiq</span>
+    </a>
     <nav class="nav__links" aria-label="Sections">
-      <a href="#work">Projects</a>
-      <a href="#approach">Approach</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
+      <a class="nav__link" href="#work">Work</a>
+      <a class="nav__link" href="#approach">Approach</a>
+      <a class="nav__link" href="#experience">Experience</a>
+      <a class="nav__link" href="#skills">Skills</a>
     </nav>
-    <div class="nav__tools">
-      <a href="Muhammad-Siddiq.pdf" download class="btn btn--ghost btn--small nav__cv">CV</a>
-      <a href="#contact" class="btn btn--dark btn--small">Contact</a>
-    </div>
+    <a href="#contact" class="btn btn--ink btn--nav">Get in touch</a>
   </div>
 </header>
 
 <main id="top">
 
   <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div class="hero__copy">
-        <span class="status"><i aria-hidden="true"></i>Open to new projects</span>
-        <h1 class="hero__title">AI systems that solve <mark>real business problems.</mark></h1>
-        <p class="hero__sub">
-          I&rsquo;m <strong>Muhammad Siddiq</strong>, a Generative AI Engineer from Faisalabad, Pakistan.
-          I build RAG systems, AI agents, and WhatsApp &amp; voice automation, from the first
-          conversation about what&rsquo;s going wrong to a product running in production.
-        </p>
-        <div class="hero__cta">
-          <a href="#work" class="btn btn--dark">
-            See my projects
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="#contact" class="btn btn--ghost">Tell me your problem</a>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero__wrap">
+      <div class="hero__inner">
+
+        <div class="hero__meta enter enter--1">
+          <span>Faisalabad, Pakistan &middot; GMT+5</span>
+          <span class="hero__status"><span class="pulse" aria-hidden="true"></span>Open to new projects</span>
         </div>
+
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__line"><span class="hero__line-in hero__title-muted">AI systems that solve</span></span>
+          <span class="hero__line"><span class="hero__line-in">real business problems.</span></span>
+        </h1>
+
+        <div class="hero__row">
+          <div class="hero__copy enter enter--3">
+            <p class="hero__intro">I&rsquo;m <strong>Muhammad Siddiq</strong>. I build RAG systems, AI agents, and WhatsApp &amp; voice automation, from the first conversation about what&rsquo;s going wrong to a product running in production.</p>
+            <div class="hero__cta">
+              <a href="#work" class="btn btn--ink btn--lg">See the case studies<span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></a>
+              <a href="#contact" class="btn btn--line btn--lg">Tell me your problem</a>
+            </div>
+          </div>
+
+          <div class="build tone-dark enter enter--4">
+            <h2 class="build__label" id="build-title">What I build</h2>
+            <ol class="build__list" aria-labelledby="build-title">
+              <li class="build__item"><span class="build__num">01</span><span class="build__name">RAG &amp; knowledge assistants</span></li>
+              <li class="build__item"><span class="build__num">02</span><span class="build__name">AI agents &amp; automation</span></li>
+              <li class="build__item"><span class="build__num">03</span><span class="build__name">WhatsApp &amp; voice agents</span></li>
+              <li class="build__item"><span class="build__num">04</span><span class="build__name">LLM evaluation</span></li>
+              <li class="build__item"><span class="build__num">05</span><span class="build__name">Backends &amp; SaaS</span></li>
+            </ol>
+          </div>
+        </div>
+
       </div>
-
-      <!-- problem → result preview, filled by js/main.js -->
-      <a class="preview" id="preview" href="#work" aria-label="Featured case study">
-        <div class="preview__top">
-          <span class="label" id="previewCount">Case 01</span>
-          <span class="preview__dots" id="previewDots" aria-hidden="true"></span>
-        </div>
-        <div class="preview__body" id="previewBody">
-          <div class="preview__row">
-            <span class="tag tag--problem">Problem</span>
-            <p id="previewProblem">Every project here starts with a problem, not a tech stack.</p>
-          </div>
-          <div class="preview__arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-          </div>
-          <div class="preview__row">
-            <span class="tag tag--result">Result</span>
-            <p id="previewResult">Open any case study to see the problem, the plan and the outcome.</p>
-          </div>
-        </div>
-        <div class="preview__foot">
-          <strong id="previewName">Read the case studies</strong>
-          <span class="circle" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-    </div>
-
-    <div class="wrap">
-      <ul class="focus" aria-label="What I build">
-        <li>RAG &amp; knowledge assistants</li>
-        <li>AI agents &amp; automation</li>
-        <li>WhatsApp &amp; voice agents</li>
-        <li>LLM evaluation</li>
-        <li>Backends &amp; SaaS</li>
-      </ul>
     </div>
   </section>
 
-  <!-- ============ PROJECTS ============ -->
-  <section class="section" id="work">
+  <!-- ============ PROOF ============ -->
+  <section class="proof tone-dark" aria-labelledby="proof-title">
     <div class="wrap">
-      <header class="head">
-        <span class="label">Projects</span>
-        <h2 class="head__title">Problems I&rsquo;ve solved</h2>
-        <p class="head__lead">Every project opens as a short case study: the problem, my plan, and the outcome.</p>
-      </header>
+      <div class="proof__head">
+        <div class="head__titles">
+          <p class="eyebrow">Evaluation</p>
+          <h2 class="proof__title" id="proof-title">Proof, not a demo.</h2>
+        </div>
+        <p class="proof__lead">My client assistants ship with an evaluation suite. These numbers come straight from the scorecards: the first two from the Edge Manpower Assistant, 350+ from StackMinds, still in progress.</p>
+      </div>
+      <div class="stats">
+        <div class="stat rv">
+          <p class="stat__kicker"><span class="stat__idx">01</span>Latency</p>
+          <p class="stat__value"><span class="stat__num" data-count="4.8" data-dec="1">4.8</span><span class="stat__unit">s</span></p>
+          <p class="stat__label">p95 reply time on WhatsApp, against a 5&nbsp;s target</p>
+        </div>
+        <div class="stat rv">
+          <p class="stat__kicker"><span class="stat__idx">02</span>Cost</p>
+          <p class="stat__value"><span class="stat__unit stat__unit--pre">$</span><span class="stat__num" data-count="0.00017" data-dec="5">0.00017</span></p>
+          <p class="stat__label">Cost per answered question</p>
+        </div>
+        <div class="stat rv">
+          <p class="stat__kicker"><span class="stat__idx">03</span>Coverage</p>
+          <p class="stat__value"><span class="stat__num" data-count="350" data-dec="0" data-suf="+">350+</span></p>
+          <p class="stat__label">Curated test cases gating each release</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+  <!-- ============ 01 WORK ============ -->
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="head__titles">
+          <p class="eyebrow"><span class="eyebrow__num">01</span> &mdash; Work</p>
+          <h2 class="head__title" id="work-title">Problems I&rsquo;ve solved</h2>
+        </div>
+        <p class="head__lead">Every project opens as a short case study: the problem, my plan, and the outcome.</p>
+      </div>
+
       <div class="cards" id="cards"></div>
       <noscript>
         <ul class="nojs">
@@ -146,181 +161,245 @@
           <li><h3>ElevateXCrew — website &amp; CMS</h3><p><strong>Problem:</strong> Every blog post or job opening needed a developer. <strong>Result:</strong> A fast, SEO-ready site the team now updates themselves.</p><p>The corporate website and content platform for ElevateXCrew, taken from business requirements to production: a server-rendered public site, a REST API and a dedicated admin portal.</p></li>
         </ul>
       </noscript>
+      <div class="more" id="more" hidden>
+        <div class="more__head">
+          <h3 class="more__title" id="more-title">More case studies</h3>
+          <div class="more__controls">
+            <span class="more__count" aria-live="polite"><b id="slideNow">05</b> / 10</span>
+            <button type="button" class="slide-btn" id="slidePrev" aria-label="Previous case studies"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg></button>
+            <button type="button" class="slide-btn" id="slideNext" aria-label="Next case studies"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <ol class="slider" id="moreList" tabindex="0" aria-labelledby="more-title"></ol>
+        <div class="slider__bar" aria-hidden="true"><span id="slideBar"></span></div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ APPROACH ============ -->
-  <section class="section section--tint" id="approach">
+  <!-- ============ 02 APPROACH ============ -->
+  <section class="section tone-dark" id="approach" aria-labelledby="approach-title">
     <div class="wrap">
-      <header class="head">
-        <span class="label">Approach</span>
-        <h2 class="head__title">Problem first. Model second.</h2>
+      <div class="head">
+        <div class="head__titles">
+          <p class="eyebrow"><span class="eyebrow__num">02</span> &mdash; Approach</p>
+          <h2 class="head__title" id="approach-title">Problem first. Model second.</h2>
+        </div>
         <p class="head__lead">Most AI projects fail because they start with a framework. Mine start with what is costing you time or money.</p>
-      </header>
-
-      <ol class="steps">
-        <li class="step rv">
-          <span class="step__num">1</span>
-          <h3>Understand the problem</h3>
-          <p>I map who is stuck, where the manual work is, and what &ldquo;fixed&rdquo; looks like. If AI isn&rsquo;t the right answer, I&rsquo;ll say so.</p>
+      </div>
+      <ol class="process rv">
+        <li class="process__step">
+          <span class="process__marker" aria-hidden="true">01</span>
+          <h3 class="process__title">Understand the problem</h3>
+          <p class="process__text">I map who is stuck, where the manual work is, and what &ldquo;fixed&rdquo; looks like. If AI isn&rsquo;t the right answer, I&rsquo;ll say so.</p>
         </li>
-        <li class="step rv">
-          <span class="step__num">2</span>
-          <h3>Plan the system</h3>
-          <p>A clear architecture before any code: the data flow, the right model, where retrieval, tools and people fit, and how it fails safely.</p>
+        <li class="process__step">
+          <span class="process__marker" aria-hidden="true">02</span>
+          <h3 class="process__title">Plan the system</h3>
+          <p class="process__text">A clear architecture before any code: the data flow, the right model, where retrieval, tools and people fit, and how it fails safely.</p>
         </li>
-        <li class="step rv">
-          <span class="step__num">3</span>
-          <h3>Ship and measure</h3>
-          <p>A production backend, a real deployment, and evaluation results, so you can see it working instead of trusting a demo.</p>
+        <li class="process__step">
+          <span class="process__marker process__marker--end" aria-hidden="true">03</span>
+          <h3 class="process__title">Ship and measure</h3>
+          <p class="process__text">A production backend, a real deployment, and evaluation results, so you can see it working instead of trusting a demo.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ============ EXPERIENCE ============ -->
-  <section class="section" id="experience">
+  <!-- ============ 03 EXPERIENCE ============ -->
+  <section class="section" id="experience" aria-labelledby="experience-title">
     <div class="wrap">
-      <header class="head">
-        <span class="label">Experience</span>
-        <h2 class="head__title">Where I&rsquo;ve worked</h2>
-      </header>
-
-      <div class="jobs">
-        <article class="job rv">
-          <div class="job__head">
-            <div>
-              <h3>Generative AI Engineer</h3>
-              <p class="job__org">ElevateXCrew &middot; Remote</p>
-            </div>
-            <span class="job__when job__when--now">Feb 2026 &ndash; Present</span>
-          </div>
-          <ul>
-            <li>Design and deploy agentic AI pipelines, RAG systems, AI chatbots and n8n automation workflows for client projects, cutting manual operations.</li>
-            <li>Built voice-to-voice AI agents with STT/TTS, an AI appointment-booking chatbot, and a client project monitoring system as internal products.</li>
-          </ul>
-        </article>
-
-        <article class="job rv">
-          <div class="job__head">
-            <div>
-              <h3>Generative AI Trainer</h3>
-              <p class="job__org">Tecrix &middot; On-site</p>
-            </div>
-            <span class="job__when">Jan 2025 &ndash; Oct 2025</span>
-          </div>
-          <ul>
-            <li>Designed and delivered hands-on curricula on Generative AI, prompt engineering and LLM orchestration frameworks.</li>
-            <li>Mentored students and developers through real RAG pipelines, API integrations and vector databases.</li>
-            <li>Supervised capstone projects on autonomous agents and workflow automation, from first concepts to deployed systems.</li>
-          </ul>
-        </article>
-
-        <article class="job rv">
-          <div class="job__head">
-            <div>
-              <h3>AI/ML Engineer</h3>
-              <p class="job__org">DevelopersHub Corporation &middot; Remote</p>
-            </div>
-            <span class="job__when">Dec 2024 &ndash; Jan 2025</span>
-          </div>
-          <ul>
-            <li>Designed and implemented LLM-based RAG systems and chatbots for workflow automation and customer knowledge retrieval.</li>
-            <li>Built AI-driven automation including social media auto-posting and n8n workflows.</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SKILLS ============ -->
-  <section class="section section--tint" id="skills">
-    <div class="wrap">
-      <header class="head">
-        <span class="label">Skills</span>
-        <h2 class="head__title">Tools I work with</h2>
-      </header>
-
-      <div class="skills">
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-lavender-d)"></span>AI &amp; LLMs</h3>
-          <ul><li>LLMs</li><li>RAG pipelines</li><li>Agentic AI</li><li>Voice-to-voice agents</li><li>MCP</li><li>NLP</li><li>AI automation</li></ul>
-        </article>
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-mint-d)"></span>Frameworks</h3>
-          <ul><li>LangChain</li><li>LangGraph</li><li>LangSmith</li><li>OpenAI API</li><li>Hugging Face</li><li>n8n</li><li>Twilio</li></ul>
-        </article>
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-peach-d)"></span>Backend</h3>
-          <ul><li>Python</li><li>FastAPI</li><li>Flask</li><li>Pydantic</li><li>SQLAlchemy</li><li>Node.js</li><li>Prisma</li></ul>
-        </article>
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-sky-d)"></span>Databases &amp; vectors</h3>
-          <ul><li>PostgreSQL</li><li>MySQL</li><li>Redis</li><li>Supabase</li><li>Pinecone</li><li>FAISS</li><li>Chroma</li></ul>
-        </article>
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-butter-d)"></span>Frontend</h3>
-          <ul><li>React</li><li>Next.js</li><li>TypeScript</li></ul>
-        </article>
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-rose-d)"></span>Machine learning</h3>
-          <ul><li>Scikit-learn</li><li>TensorFlow / Keras</li><li>NumPy</li><li>Pandas</li><li>Jupyter</li></ul>
-        </article>
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-mint-d)"></span>Deployment</h3>
-          <ul><li>DigitalOcean</li><li>Railway</li><li>Vercel</li><li>Netlify</li><li>Hostinger</li><li>cPanel</li><li>Git &amp; GitHub</li></ul>
-        </article>
-        <article class="skill rv">
-          <h3><span class="skill__dot" style="--c:var(--t-lavender-d)"></span>AI coding tools</h3>
-          <ul><li>Claude Code</li><li>Cursor</li><li>GitHub Copilot</li><li>OpenCode</li><li>Kilo Code</li><li>Gemini CLI</li><li>Qwen CLI</li></ul>
-        </article>
-      </div>
-
-      <h3 class="subhead">Certifications &amp; education</h3>
-      <div class="creds">
-        <article class="cred rv"><span class="label">Certification</span><h4>GenAI Engineer</h4><p>Tecrix &middot; Oct 2025</p></article>
-        <article class="cred rv"><span class="label">Certification</span><h4>Backend Engineer</h4><p>Akhuwat FIRST, Faisalabad &middot; Aug 2025</p></article>
-        <article class="cred rv"><span class="label">Education</span><h4>BS Computer Science</h4><p>Virtual University of Pakistan</p></article>
-        <article class="cred rv"><span class="label">Education</span><h4>Intermediate</h4><p>Akhuwat College Kasur</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="section" id="contact">
-    <div class="wrap">
-      <div class="contact">
-        <span class="label">Contact</span>
-        <h2 class="contact__title">Got a problem worth solving?</h2>
-        <p class="contact__lead">Tell me what&rsquo;s slow, manual or broken. I&rsquo;ll reply with how I&rsquo;d approach it: a plan, not a sales pitch.</p>
-        <a href="mailto:muhammadsiddiq.code@gmail.com?subject=Project%20enquiry" class="contact__mail">muhammadsiddiq.code@gmail.com</a>
-        <div class="contact__row">
-          <button class="btn btn--lime btn--small" id="copyMail" type="button" data-mail="muhammadsiddiq.code@gmail.com">Copy email</button>
-          <a class="btn btn--outline-light btn--small" href="https://github.com/genaiwithms" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn btn--outline-light btn--small" href="https://linkedin.com/in/genaiwithms" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn--outline-light btn--small" href="Muhammad-Siddiq.pdf" download>Download CV</a>
+      <div class="head">
+        <div class="head__titles">
+          <p class="eyebrow"><span class="eyebrow__num">03</span> &mdash; Experience</p>
+          <h2 class="head__title" id="experience-title">Where I&rsquo;ve worked</h2>
         </div>
       </div>
+      <ol class="timeline">
+        <li class="tl rv">
+          <div class="tl__when">
+            <span class="tl__dates">Feb 2026 &ndash; Present</span>
+            <span class="tl__now">Current role</span>
+          </div>
+          <span class="tl__rail" aria-hidden="true"><span class="tl__dot tl__dot--now"></span></span>
+          <div class="tl__main">
+            <div class="tl__role">
+              <h3 class="tl__title">Generative AI Engineer</h3>
+              <p class="tl__org">ElevateXCrew &middot; Remote</p>
+            </div>
+            <ul class="tl__list">
+              <li>Design and deploy agentic AI pipelines, RAG systems, AI chatbots and n8n automation workflows for client projects, cutting manual operations.</li>
+              <li>Built voice-to-voice AI agents with STT/TTS, an AI appointment-booking chatbot, and a client project monitoring system as internal products.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl rv">
+          <div class="tl__when">
+            <span class="tl__dates">Jan 2025 &ndash; Oct 2025</span>
+          </div>
+          <span class="tl__rail" aria-hidden="true"><span class="tl__dot"></span></span>
+          <div class="tl__main">
+            <div class="tl__role">
+              <h3 class="tl__title">Generative AI Trainer</h3>
+              <p class="tl__org">Tecrix &middot; On-site</p>
+            </div>
+            <ul class="tl__list">
+              <li>Designed and delivered hands-on curricula on Generative AI, prompt engineering and LLM orchestration frameworks.</li>
+              <li>Mentored students and developers through real RAG pipelines, API integrations and vector databases.</li>
+              <li>Supervised capstone projects on autonomous agents and workflow automation, from first concepts to deployed systems.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl rv">
+          <div class="tl__when">
+            <span class="tl__dates">Dec 2024 &ndash; Jan 2025</span>
+          </div>
+          <span class="tl__rail" aria-hidden="true"><span class="tl__dot"></span></span>
+          <div class="tl__main">
+            <div class="tl__role">
+              <h3 class="tl__title">AI/ML Engineer</h3>
+              <p class="tl__org">DevelopersHub Corporation &middot; Remote</p>
+            </div>
+            <ul class="tl__list">
+              <li>Designed and implemented LLM-based RAG systems and chatbots for workflow automation and customer knowledge retrieval.</li>
+              <li>Built AI-driven automation including social media auto-posting and n8n workflows.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-      <footer class="footer">
-        <span>&copy; <span id="year">2026</span> Muhammad Siddiq</span>
-        <a href="#top">Back to top &uarr;</a>
-      </footer>
+  <!-- ============ 04 SKILLS ============ -->
+  <section class="section tone-dark" id="skills" aria-labelledby="skills-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="head__titles">
+          <p class="eyebrow"><span class="eyebrow__num">04</span> &mdash; Skills</p>
+          <h2 class="head__title" id="skills-title">Tools I work with</h2>
+        </div>
+      </div>
+      <ol class="kits">
+        <li class="kit rv">
+          <span class="kit__num">01</span>
+          <h3 class="kit__title">AI &amp; LLMs</h3>
+          <ul class="kit__chips"><li>LLMs</li><li>RAG pipelines</li><li>Agentic AI</li><li>Voice-to-voice agents</li><li>MCP</li><li>NLP</li><li>AI automation</li></ul>
+        </li>
+        <li class="kit rv">
+          <span class="kit__num">02</span>
+          <h3 class="kit__title">Frameworks</h3>
+          <ul class="kit__chips"><li>LangChain</li><li>LangGraph</li><li>LangSmith</li><li>OpenAI API</li><li>Hugging Face</li><li>n8n</li><li>Twilio</li></ul>
+        </li>
+        <li class="kit rv">
+          <span class="kit__num">03</span>
+          <h3 class="kit__title">Backend</h3>
+          <ul class="kit__chips"><li>Python</li><li>FastAPI</li><li>Flask</li><li>Pydantic</li><li>SQLAlchemy</li><li>Node.js</li><li>Prisma</li></ul>
+        </li>
+        <li class="kit rv">
+          <span class="kit__num">04</span>
+          <h3 class="kit__title">Databases &amp; vectors</h3>
+          <ul class="kit__chips"><li>PostgreSQL</li><li>MySQL</li><li>Redis</li><li>Supabase</li><li>Pinecone</li><li>FAISS</li><li>Chroma</li></ul>
+        </li>
+        <li class="kit rv">
+          <span class="kit__num">05</span>
+          <h3 class="kit__title">Frontend</h3>
+          <ul class="kit__chips"><li>React</li><li>Next.js</li><li>TypeScript</li></ul>
+        </li>
+        <li class="kit rv">
+          <span class="kit__num">06</span>
+          <h3 class="kit__title">Machine learning</h3>
+          <ul class="kit__chips"><li>Scikit-learn</li><li>TensorFlow / Keras</li><li>NumPy</li><li>Pandas</li><li>Jupyter</li></ul>
+        </li>
+        <li class="kit rv">
+          <span class="kit__num">07</span>
+          <h3 class="kit__title">Deployment</h3>
+          <ul class="kit__chips"><li>DigitalOcean</li><li>Railway</li><li>Vercel</li><li>Netlify</li><li>Hostinger</li><li>cPanel</li><li>Git &amp; GitHub</li></ul>
+        </li>
+        <li class="kit rv">
+          <span class="kit__num">08</span>
+          <h3 class="kit__title">AI coding tools</h3>
+          <ul class="kit__chips"><li>Claude Code</li><li>Cursor</li><li>GitHub Copilot</li><li>OpenCode</li><li>Kilo Code</li><li>Gemini CLI</li><li>Qwen CLI</li></ul>
+        </li>
+      </ol>
+
+      <div class="creds">
+        <div class="cred-group rv">
+          <h3 class="cred-group__title">Certifications</h3>
+          <ul class="cred-list">
+            <li class="cred tone-light">
+              <span class="cred__top"><span class="cred__num">01</span><span class="cred__date">Oct 2025</span></span>
+              <svg class="cred__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.9 7 22l5-3 5 3-1.5-8.1"/><path d="m9.5 9 1.7 1.7L14.5 7.4"/></svg>
+              <span class="cred__title">GenAI Engineer</span>
+              <span class="cred__meta">Tecrix</span>
+            </li>
+            <li class="cred tone-light">
+              <span class="cred__top"><span class="cred__num">02</span><span class="cred__date">Aug 2025</span></span>
+              <svg class="cred__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.9 7 22l5-3 5 3-1.5-8.1"/><path d="m9.5 9 1.7 1.7L14.5 7.4"/></svg>
+              <span class="cred__title">Backend Engineer</span>
+              <span class="cred__meta">Akhuwat FIRST, Faisalabad</span>
+            </li>
+          </ul>
+        </div>
+        <div class="cred-group rv">
+          <h3 class="cred-group__title">Education</h3>
+          <ul class="cred-list">
+            <li class="cred tone-light">
+              <span class="cred__top"><span class="cred__num">01</span></span>
+              <svg class="cred__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg>
+              <span class="cred__title">BS Computer Science</span>
+              <span class="cred__meta">Virtual University of Pakistan</span>
+            </li>
+            <li class="cred tone-light">
+              <span class="cred__top"><span class="cred__num">02</span></span>
+              <svg class="cred__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg>
+              <span class="cred__title">Intermediate</span>
+              <span class="cred__meta">Akhuwat College Kasur</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 CONTACT ============ -->
+  <section class="contact tone-dark" id="contact" aria-labelledby="contact-title">
+    <div class="contact__band">
+      <div class="contact__inner">
+        <p class="eyebrow eyebrow--light"><span class="eyebrow__num">05</span> &mdash; Contact</p>
+        <h2 class="contact__title" id="contact-title">Got a problem worth solving?</h2>
+        <p class="contact__lead">Tell me what&rsquo;s slow, manual or broken. I&rsquo;ll reply with how I&rsquo;d approach it: a plan, not a sales pitch.</p>
+        <a href="mailto:muhammadsiddiq.code@gmail.com?subject=Project%20enquiry" class="contact__mail"><span class="contact__mail-text">muhammadsiddiq.code@<wbr />gmail.com</span><span class="contact__mail-arrow arrow"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></a>
+        <div class="contact__actions">
+          <button type="button" class="btn btn--cream" id="copyMail" data-mail="muhammadsiddiq.code@gmail.com"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span id="copyLabel" aria-live="polite">Copy email</span></button>
+          <a href="https://github.com/genaiwithms" target="_blank" rel="noopener" class="btn btn--ghost-light">GitHub<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+          <a href="https://www.linkedin.com/in/genaiwithms/" target="_blank" rel="noopener" class="btn btn--ghost-light">LinkedIn<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+          <a href="Muhammad-Siddiq.pdf" download class="btn btn--ghost-light">Download CV<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg></a>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
+<!-- ============ FOOTER ============ -->
+<footer class="footer tone-dark">
+  <div class="footer__inner">
+    <span>&copy; <span id="year">2026</span> Muhammad Siddiq</span>
+    <a href="#top" class="footer__top">Back to top<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg></a>
+  </div>
+</footer>
 <!-- ============ CASE STUDY SHEET ============ -->
 <div class="sheet" id="sheet" aria-hidden="true">
-  <div class="sheet__scrim" data-close></div>
+  <button type="button" class="sheet__scrim" aria-label="Close case study" tabindex="-1" data-close></button>
   <div class="sheet__panel" id="sheetPanel" role="dialog" aria-modal="true" aria-labelledby="csTitle" tabindex="-1">
     <div class="sheet__bar">
-      <span class="label" id="sheetCrumb">Case study</span>
-      <button class="sheet__close" type="button" data-close>
-        Close
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
+      <span class="sheet__count" aria-live="polite">Case study <span class="sheet__num" id="sheetNum">01</span> / 10</span>
+      <div class="sheet__tools">
+        <button type="button" class="icon-btn" data-step="-1" aria-label="Previous case study"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg></button>
+        <button type="button" class="icon-btn" data-step="1" aria-label="Next case study"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+        <button type="button" class="btn btn--line btn--close" data-close>Close<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+      </div>
       <span class="sheet__progress" id="sheetProgress" aria-hidden="true"></span>
     </div>
     <div id="sheetContent"></div>

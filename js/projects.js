@@ -126,7 +126,7 @@ window.PROJECTS = [
     category: "Multi-agent · RAG · WhatsApp",
     tags: ["Agents", "RAG", "WhatsApp"],
     role: "Design & build",
-    type: "Client project · in progress",
+    type: "Client project",
     audience: "A software company's HR and sales teams",
     built: "one assistant that screens candidates, answers company questions and emails HR a finished summary.",
     summary:
