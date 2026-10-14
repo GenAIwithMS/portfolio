@@ -1,0 +1,41 @@
+# Muhammad Siddiq — Generative AI Engineer
+
+> Generative AI engineer based in Lahore, Pakistan (GMT+5). Builds production RAG systems, AI agents, and WhatsApp & voice automation with LangGraph, LangChain, and FastAPI. Ten case studies document the problem, the plan, and the outcome for each project. Open to new projects.
+
+## Pages
+
+- [Home](https://www.muhammadsiddiq.dev/): Portfolio homepage — case studies, approach, experience, skills, contact
+- [Curriculum vitae (PDF)](https://www.muhammadsiddiq.dev/Muhammad-Siddiq.pdf): Downloadable CV
+
+## Case studies
+
+All case studies are interactive sections on the homepage (hash URLs). Full problem → plan → outcome text is in the page HTML and JSON-LD.
+
+1. [Clinic WhatsApp Agent](https://www.muhammadsiddiq.dev/#work/clinic-whatsapp-agent): WhatsApp assistant for a paediatric clinic — bookings, clinic Q&A, emergency handoff to the doctor. Stack: FastAPI, OpenRouter, OpenWA, PostgreSQL, Google Calendar, BM25, DeepEval.
+2. [Edge Manpower Assistant](https://www.muhammadsiddiq.dev/#work/edge-manpower-assistant): WhatsApp knowledge assistant for overseas recruitment — grounded answers, abstain-by-design, evaluation suite. Stack: LangChain, ChromaDB, OpenRouter, DeepEval.
+3. [StackMinds Recruiting Agent](https://www.muhammadsiddiq.dev/#work/stackminds-recruiting-agent): Multi-role WhatsApp assistant for recruiting, support, and follow-up (in progress). Stack: LangGraph, DeepSeek, ChromaDB, PostgreSQL, Redis.
+4. [OpenGPT](https://www.muhammadsiddiq.dev/#work/opengpt): Self-hosted ChatGPT-style assistant with tools, document chat, and persistent memory. Stack: LangGraph, LangChain, FastAPI, React, FAISS.
+5. [GraceWise](https://www.muhammadsiddiq.dev/#work/gracewise): Children's spiritual growth platform — RAG answers from a curated library plus age-based curriculum. Stack: Flask, LangChain, ChromaDB, MySQL.
+6. [ElevateXCrew — website & CMS](https://www.muhammadsiddiq.dev/#work/elevatexcrew-website): Corporate site and content platform (server-rendered public site, REST API, admin portal).
+7. [RaketH Clone — AI voice SaaS](https://www.muhammadsiddiq.dev/#work/raketh-voice-saas): SaaS layer for an AI voice engine — accounts, credits, voice library, admin.
+8. [LMS Agentic](https://www.muhammadsiddiq.dev/#work/lms-agentic): Learning management system with a role-scoped LangGraph assistant that carries out tasks via tools.
+9. [YouTube RAG Chat](https://www.muhammadsiddiq.dev/#work/youtube-rag-chat): Chrome extension that turns any YouTube transcript into a question-answering surface.
+10. [OpenWA — document support](https://www.muhammadsiddiq.dev/#work/openwa): Open-source WhatsApp HTTP gateway extension so documents reach the webhook for AI/RAG pipelines.
+
+## Services (what he builds)
+
+- RAG & knowledge assistants grounded in client documents
+- AI agents & automation (LangGraph, tool use, n8n)
+- WhatsApp & voice agents (OpenWA, Twilio, STT/TTS)
+- LLM evaluation suites (DeepEval, curated test cases)
+- Backends & SaaS (FastAPI, PostgreSQL, Stripe-ready billing patterns)
+
+## Contact
+
+- Email: muhammadsiddiq.code@gmail.com
+- GitHub: https://github.com/genaiwithms
+- LinkedIn: https://www.linkedin.com/in/genaiwithms/
+
+## Optional
+
+- [Sitemap](https://www.muhammadsiddiq.dev/sitemap.xml)
