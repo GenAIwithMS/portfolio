@@ -86,6 +86,40 @@
     )
     .join("");
 
+  /* Full case-study text index for crawlers & AI agents (visually hidden, in a11y tree) */
+  const sectionText = (sec) =>
+    !sec
+      ? ""
+      : esc([sec.title || ""].concat(Array.isArray(sec.body) ? sec.body : sec.body ? [sec.body] : []).filter(Boolean).join(" "));
+  const agentIndex = document.createElement("section");
+  agentIndex.id = "case-study-index";
+  agentIndex.className = "visually-hidden";
+  agentIndex.setAttribute("aria-label", "All case studies in full");
+  agentIndex.innerHTML =
+    "<h2>All case studies</h2><ul>" +
+    PROJECTS.map(
+      (p) =>
+        "<li><article><h3>" +
+        esc(p.name) +
+        (p.status ? " (" + esc(p.status) + ")" : "") +
+        "</h3>" +
+        (p.summary ? "<p>" + esc(p.summary) + "</p>" : "") +
+        "<p><strong>Problem:</strong> " +
+        sectionText(p.problem) +
+        "</p><p><strong>Plan:</strong> " +
+        sectionText(p.plan) +
+        "</p><p><strong>Outcome:</strong> " +
+        sectionText(p.outcome) +
+        "</p>" +
+        (p.stack && p.stack.length
+          ? "<p><strong>Stack:</strong> " + esc(p.stack.join(", ")) + "</p>"
+          : "") +
+        "</article></li>"
+    ).join("") +
+    "</ul>";
+  const workWrap = document.querySelector("#work .wrap");
+  if (workWrap) workWrap.appendChild(agentIndex);
+
   /* ---------- 01 work: more case studies — drag / swipe / button slider ---------- */
   if (TOTAL > 4) {
     const track = $("#moreList");
@@ -406,7 +440,12 @@
   }
   if (!reduce && "IntersectionObserver" in window && counters.length) {
     counters.forEach((el) => {
-      el.parentElement.setAttribute("aria-label", el.parentElement.textContent.trim().replace(/\s+/g, ""));
+      const parent = el.parentElement;
+      const full = parent.textContent.trim().replace(/\s+/g, "");
+      const sr = document.createElement("span");
+      sr.className = "visually-hidden";
+      sr.textContent = full;
+      parent.insertBefore(sr, parent.firstChild);
       el.setAttribute("aria-hidden", "true");
       el.textContent = fmt(el, 0);
     });
