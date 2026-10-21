@@ -32,5 +32,11 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+User-agent: AhrefsSiteAudit
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
 Sitemap: https://www.muhammadsiddiq.dev/sitemap.xml
 
