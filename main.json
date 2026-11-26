@@ -1,0 +1,290 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Person",
+            "@id": "https://www.muhammadsiddiq.dev/#person",
+            "name": "Muhammad Siddiq",
+            "url": "https://www.muhammadsiddiq.dev/",
+            "image": "https://www.muhammadsiddiq.dev/apple-touch-icon.png",
+            "jobTitle": "Generative AI Engineer",
+            "email": "muhammadsiddiq.code@gmail.com",
+            "description": "Generative AI Engineer building RAG systems, AI agents, and WhatsApp and voice automation.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Lahore",
+                "addressCountry": "PK"
+            },
+            "worksFor": {
+                "@type": "Organization",
+                "name": "ElevateXCrew",
+                "url": "https://elevatexcrew.com"
+            },
+            "alumniOf": {
+                "@type": "CollegeOrUniversity",
+                "name": "Virtual University of Pakistan"
+            },
+            "knowsLanguage": [
+                "en",
+                "ur"
+            ],
+            "knowsAbout": [
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q117246174",
+                    "name": "Generative artificial intelligence",
+                    "sameAs": "https://www.wikidata.org/wiki/Q117246174"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q121362277",
+                    "name": "Retrieval-augmented generation",
+                    "sameAs": "https://www.wikidata.org/wiki/Q121362277"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q132451509",
+                    "name": "AI agent",
+                    "sameAs": "https://www.wikidata.org/wiki/Q132451509"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q132393291",
+                    "name": "LangGraph",
+                    "sameAs": "https://www.wikidata.org/wiki/Q132393291"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q117340550",
+                    "name": "LangChain",
+                    "sameAs": "https://www.wikidata.org/wiki/Q117340550"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q101119404",
+                    "name": "FastAPI",
+                    "sameAs": "https://www.wikidata.org/wiki/Q101119404"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q115305900",
+                    "name": "Large language model",
+                    "sameAs": "https://www.wikidata.org/wiki/Q115305900"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q1049511",
+                    "name": "WhatsApp",
+                    "sameAs": "https://www.wikidata.org/wiki/Q1049511"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q118396004",
+                    "name": "Vector database",
+                    "sameAs": "https://www.wikidata.org/wiki/Q118396004"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q28865",
+                    "name": "Python",
+                    "sameAs": "https://www.wikidata.org/wiki/Q28865"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q30642",
+                    "name": "Natural language processing",
+                    "sameAs": "https://www.wikidata.org/wiki/Q30642"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q11660",
+                    "name": "Artificial intelligence",
+                    "sameAs": "https://www.wikidata.org/wiki/Q11660"
+                },
+                {
+                    "@type": "Thing",
+                    "@id": "https://www.wikidata.org/wiki/Q132393290",
+                    "name": "LangSmith",
+                    "sameAs": "https://www.wikidata.org/wiki/Q132393290"
+                }
+            ],
+            "sameAs": [
+                "https://github.com/genaiwithms",
+                "https://www.linkedin.com/in/genaiwithms/"
+            ]
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://www.muhammadsiddiq.dev/#website",
+            "url": "https://www.muhammadsiddiq.dev/",
+            "name": "Muhammad Siddiq — Generative AI Engineer",
+            "inLanguage": "en",
+            "publisher": {
+                "@id": "https://www.muhammadsiddiq.dev/#person"
+            }
+        },
+        {
+            "@type": "ProfilePage",
+            "@id": "https://www.muhammadsiddiq.dev/#page",
+            "url": "https://www.muhammadsiddiq.dev/",
+            "name": "Muhammad Siddiq — Generative AI Engineer | RAG, AI Agents & WhatsApp Automation",
+            "description": "Generative AI Engineer building RAG systems, AI agents, and WhatsApp & voice automation with LangGraph, LangChain and FastAPI. 10 case studies: the problem, the plan and the outcome.",
+            "datePublished": "2026-09-20",
+            "dateModified": "2026-10-14",
+            "isPartOf": {
+                "@id": "https://www.muhammadsiddiq.dev/#website"
+            },
+            "mainEntity": {
+                "@id": "https://www.muhammadsiddiq.dev/#person"
+            },
+            "primaryImageOfPage": "https://www.muhammadsiddiq.dev/og-image.jpg"
+        },
+        {
+            "@type": "ItemList",
+            "name": "AI case studies by Muhammad Siddiq",
+            "numberOfItems": 10,
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "Clinic WhatsApp Agent",
+                        "url": "https://www.muhammadsiddiq.dev/#work/clinic-whatsapp-agent",
+                        "description": "A WhatsApp assistant for a paediatric clinic. It books and manages appointments, answers questions about the clinic, and hands urgent or sensitive conversations to the doctor, who replies through the same bridge.",
+                        "keywords": "FastAPI, OpenAI-compatible LLM (OpenRouter), OpenWA, SQLAlchemy, Alembic, PostgreSQL, Google Calendar, Google Sheets, BM25, Docker, DeepEval",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "Edge Manpower Assistant",
+                        "url": "https://www.muhammadsiddiq.dev/#work/edge-manpower-assistant",
+                        "description": "A WhatsApp assistant for Edge Manpower, an overseas recruitment company. It answers candidates from the company's knowledge base, refuses to invent what it doesn't know, and ships with an evaluation suite that measures every stage.",
+                        "keywords": "Python, FastAPI, LangChain, ChromaDB, bge-small embeddings, Cross-encoder reranker, OpenRouter, DeepEval, SQLite, OpenWA, Meta Cloud API, Streamlit",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "StackMinds Recruiting Agent",
+                        "url": "https://www.muhammadsiddiq.dev/#work/stackminds-recruiting-agent",
+                        "description": "A WhatsApp-native assistant for StackMinds that does three jobs in one conversation: recruits candidates, answers company, pricing and support questions from a knowledge base, and handles follow-ups. This project is still in progress.",
+                        "keywords": "Python, FastAPI, LangGraph, DeepSeek, ChromaDB, PostgreSQL, Redis, OpenWA, Resend, DeepEval, Docker, GitHub Actions",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "OpenGPT",
+                        "url": "https://www.muhammadsiddiq.dev/#work/opengpt",
+                        "description": "A ChatGPT-style assistant you can run yourself: streaming answers, conversation threads that persist, chat with your own documents, and an agent that picks the right tool for the question.",
+                        "keywords": "LangGraph, LangChain, FastAPI, React, FAISS, MySQL, Groq · gpt-oss-120b, Sentence Transformers, LangSmith, Tailwind",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "GraceWise",
+                        "url": "https://www.muhammadsiddiq.dev/#work/gracewise",
+                        "description": "A children's spiritual growth platform for parents and educators. An AI guide answers questions from a curated library of source documents, and a curriculum system delivers structured lessons by age and learning stage.",
+                        "keywords": "Flask, LangChain, OpenAI API, Groq, ChromaDB, Sentence Transformers, MySQL, SQLAlchemy",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "ElevateXCrew — website & CMS",
+                        "url": "https://www.muhammadsiddiq.dev/#work/elevatexcrew-website",
+                        "description": "The corporate website and content platform for ElevateXCrew, taken from business requirements to production: a server-rendered public site, a REST API and a dedicated admin portal.",
+                        "keywords": "Web development, CMS, REST API, server-rendered, SEO-ready",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 7,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "RaketH Clone — AI voice SaaS",
+                        "url": "https://www.muhammadsiddiq.dev/#work/raketh-voice-saas",
+                        "description": "The complete SaaS layer for an AI voice engine: it connects to a separate GPU voice backend and wraps voice cloning, multilingual speech and translated voice in everything needed to run them as a business.",
+                        "keywords": "Voice AI, SaaS, billing, voice cloning, multilingual speech",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 8,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "LMS Agentic",
+                        "url": "https://www.muhammadsiddiq.dev/#work/lms-agentic",
+                        "description": "A full learning management system for administrators, teachers and students, with a LangGraph assistant that carries out tasks using tools matched to the role of whoever is asking.",
+                        "keywords": "LangGraph, LMS, role-based tools, agentic AI, education technology",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 9,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "YouTube RAG Chat",
+                        "url": "https://www.muhammadsiddiq.dev/#work/youtube-rag-chat",
+                        "description": "A Chrome extension that turns any YouTube video into something you can question. It reads the transcript, indexes it, and answers from what was actually said.",
+                        "keywords": "Chrome extension, RAG, YouTube transcript, question answering",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 10,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "OpenWA — document support",
+                        "url": "https://www.muhammadsiddiq.dev/#work/openwa",
+                        "description": "OpenWA is an open-source, self-hosted HTTP gateway for WhatsApp. I extended it so documents sent by users actually arrive in the webhook and can be downloaded on demand.",
+                        "keywords": "OpenWA, WhatsApp gateway, open source, webhooks, document handling",
+                        "creator": {
+                            "@id": "https://www.muhammadsiddiq.dev/#person"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
